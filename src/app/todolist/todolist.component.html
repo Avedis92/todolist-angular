@@ -1,0 +1,13 @@
+<app-todoitem (pushTodoItem)="addToListItem($event)"></app-todoitem>
+<div>
+    <div *ngFor="let item of todoList let i=index">
+        <p *ngIf="!isEdited || i!==itemIndex ; else elseBlock">{{item.name|uppercase}} created on:{{item.creationDate|date:'medium'}}</p>
+        <button (click)="deleteItem(i)">Delete</button>
+        <button (click)="editItem(i)">Edit</button>
+        <ng-template #elseBlock>
+            <input type="text" [(ngModel)]="todoItem.name"/>
+            <button (click)="update(i)">Update</button>
+        </ng-template>
+    </div>
+
+</div>
